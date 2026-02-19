@@ -334,18 +334,12 @@ Transform:
   m_GameObject: {fileID: 257488557}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.97, y: 6.14, z: 5.65}
+  m_LocalPosition: {x: 0, y: 2.07, z: 5.65}
   m_LocalScale: {x: 2, y: 0.2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!4 &350537538 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6412385626651092500, guid: e39a23c468cd1b04cb432e56912eac14,
-    type: 3}
-  m_PrefabInstance: {fileID: 7081235784357104201}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &659265799
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +393,7 @@ MonoBehaviour:
     type: 3}
   ShotPosition: {fileID: 1927434135}
   Target: {fileID: 257488561}
-  ParedFondo: {fileID: 350537538}
+  ParedFondo: {fileID: 1078359216}
   CurrentDegree: 0
   CurrentStrength: 0
 --- !u!850595691 &767930536
