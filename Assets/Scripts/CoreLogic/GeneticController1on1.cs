@@ -32,9 +32,9 @@ public class GeneticController1on1 : AIController
     public float mutationRate = 0.1f;
     public int tournamentSize = 5;
 
-    private List<Genome> _population;
-    private Genome _bestGenome;
-    private bool _hasTrained = false;
+    private List<Genome> population;
+    private Genome bestGenome;
+    private bool hasTrained = false;
 
     private const int NUM_WEIGHTS = 5;
 
@@ -42,7 +42,7 @@ public class GeneticController1on1 : AIController
     {
         base.Awake();
 
-        if (isLearningMode && !_hasTrained)
+        if (isLearningMode && !hasTrained)
         {
             StartTraining();
         }
@@ -55,12 +55,12 @@ public class GeneticController1on1 : AIController
 
     protected override void Think()
     {
-        if (isLearningMode && !_hasTrained)
+        if (isLearningMode && !hasTrained)
         {
             StartTraining();
         }
 
-        _attackToDo = ChooseBestAttack(_currentLogicState, _bestGenome);
+        _attackToDo = ChooseBestAttack(_currentLogicState, bestGenome);
     }
 
     private void StartTraining()
@@ -71,32 +71,32 @@ public class GeneticController1on1 : AIController
         {
             EvaluatePopulation();
 
-            _population.Sort();
-            _bestGenome = _population[0];
+            population.Sort();
+            bestGenome = population[0];
 
-            if (_bestGenome.Fitness > 1000f)
+            if (bestGenome.Fitness > 1000f)
                 break;
 
             CreateNextGeneration();
         }
 
-        _hasTrained = true;
+        hasTrained = true;
         isLearningMode = false;
-        Debug.Log($"Se ha terminado, mejor fitness: {_bestGenome.Fitness}");
+        Debug.Log($"Se ha terminado, mejor fitness: {bestGenome.Fitness}");
     }
 
     private void InitializePopulation()
     {
-        _population = new List<Genome>();
+        population = new List<Genome>();
         for (int i = 0; i < populationSize; i++)
         {
-            _population.Add(new Genome(NUM_WEIGHTS));
+            population.Add(new Genome(NUM_WEIGHTS));
         }
     }
 
     private void EvaluatePopulation()
     {
-        foreach (var genome in _population)
+        foreach (var genome in population)
         {
             genome.Fitness = SimulateMatches(genome, 5);
         }
@@ -143,8 +143,8 @@ public class GeneticController1on1 : AIController
     {
         List<Genome> nextGen = new List<Genome>();
 
-        nextGen.Add(_population[0]);
-        nextGen.Add(_population[1]);
+        nextGen.Add(population[0]);
+        nextGen.Add(population[1]);
 
         while (nextGen.Count < populationSize)
         {
@@ -157,7 +157,7 @@ public class GeneticController1on1 : AIController
             nextGen.Add(child);
         }
 
-        _population = nextGen;
+        population = nextGen;
     }
 
     private Genome TournamentSelection()
@@ -165,7 +165,7 @@ public class GeneticController1on1 : AIController
         Genome best = null;
         for (int i = 0; i < tournamentSize; i++)
         {
-            Genome randomInd = _population[UnityEngine.Random.Range(0, populationSize)];
+            Genome randomInd = population[UnityEngine.Random.Range(0, populationSize)];
             if (best == null || randomInd.Fitness > best.Fitness)
             {
                 best = randomInd;
