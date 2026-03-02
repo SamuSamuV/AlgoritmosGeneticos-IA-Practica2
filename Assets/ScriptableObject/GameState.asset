@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50157075a2c4b7647a8d98d03bd480ea, type: 3}
   m_Name: GameState
   m_EditorClassIdentifier: 
-  IsFinished: 1
+  IsFinished: 0
   TurnNumber: 0
   CurrentPlayer: {fileID: 11400000, guid: 0feac603ef8b7974fbb5ad1e9d6661f8, type: 2}
   ListOfPlayers: {fileID: 11400000, guid: 96ab79ecd622ef04f84e0e95721af4bb, type: 2}
   LeftPlayerIsHuman: 0
-  RightPlayerIsHuman: 0
+  RightPlayerIsHuman: 1
